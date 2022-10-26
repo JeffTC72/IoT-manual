@@ -18,7 +18,7 @@ This manual also functions as a proof of concept for my IoT project. A pair of s
 ![Sketch of concept](https://github.com/JeffTC72/Iot-manual/blob/main/resources/img/concept_sketch.jpg)
 
 ## Setup
-The 2 board we will be using in this manual will be refered to as the 'sender' which will send the data, and the 'reciever' which will -you guessed it- recieve the data.Obviously we start by opening the Adruino IDE software and plugging in 1 of the boards, this board will be your reciever. Go to File > Preferences, where it says 'Additional boards manager URL's' paste this url:
+The 2 board we will be using in this manual will be refered to as the 'sender' which will send the data, and the 'reciever' which will -you guessed it- recieve the data. Obviously we start by opening the Adruino IDE software and plugging in 1 of the boards, this board will be your reciever. Go to File > Preferences, where it says 'Additional boards manager URL's' paste this url:
 ```
 http://arduino.esp8266.com/stable/package_esp8266com_index.json
 ```
@@ -36,4 +36,39 @@ Now go to Tools > Board > Boards Manager... and search for 'ESP8266', click inst
 
 ### Getting your boards MAC address
 
-For your 
+For your sender to know where to send it's data it will need to know the reciever MAC address, this is hardcoded in the board, you cannot give it one yourself. To do this upload the following code, then go to Tools > Serial Monitor.
+
+```
+#include <ESP8266WiFi.h>
+ 
+void setup(){
+  Serial.begin(115200);
+  WiFi.mode(WIFI_AP_STA);
+  Serial.println(WiFi.macAddress());
+}
+ 
+void loop(){
+
+}
+```
+
+
+
+
+
+
+
+
+## Encountered ERRORS
+
+```
+compilation terminated. exit status 1 Compilation error: WiFi.h: No such file or directory
+```
+
+![Error message](https://github.com/JeffTC72/Iot-manual/blob/main/resources/img/wifierror.jpg)
+
+This is an error message I unexpectedly encountered while reproducing my process for this manual. The wierd part is that I did this before and succeeded without fail. Here is what I did to fix this:
+
+First I tried to upload the code again, this failed. (obviously)
+
+Then I 
