@@ -75,3 +75,29 @@ I found a [video](https://www.programmingelectronics.com/no-such-file-error/) wi
 
 ![Error message](https://github.com/JeffTC72/Iot-manual/blob/main/resources/img/wififix1.jpg)
 ![Error message](https://github.com/JeffTC72/Iot-manual/blob/main/resources/img/wififix2.jpg)
+
+Now it would surely work right, Wrong! I got a brand new error:
+
+```
+Compilation error: 'class WiFiClass' has no member named 'mode'
+```
+
+I pasted this message in to Google and found a [stackoverflow post](https://stackoverflow.com/questions/63118195/exit-status-1-class-wificlass-has-no-member-named-softap-in-nodemcu). Here I found that I was using the wrong WiFi library for the ESP8266 board (still, it did work before).
+
+I changed:
+
+```
+#include <WiFi.h>
+```
+
+To:
+
+```
+#include <ESP8266WiFi.h>
+```
+
+And was greeted with another red text of death, this one was actually not very bad.
+
+![Error message](https://github.com/JeffTC72/Iot-manual/blob/main/resources/img/wififix3.jpg)
+
+I did the suggested fix and succesfully pulled my MAC address.
