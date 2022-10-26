@@ -1,4 +1,4 @@
-# Setting up communication between 2 ESP8266 boards with EPS_NOW
+# Setting up communication between 2 ESP8266 boards with ESP_NOW
 
 ## About ESP_NOW
 
@@ -9,7 +9,7 @@
 > ~ [randomnerdtutorial](https://randomnerdtutorials.com/esp-now-esp32-arduino-ide/)
 
 ## Requirements
-- 2x EPS8266 NodeMCU boards
+- 2x ESP8266 NodeMCU boards
 - Arduino IDE software
 
 ## Proof of concept
@@ -235,6 +235,8 @@ And the reviecer board should show this:
 
 ## Encountered ERRORS
 
+### WiFi error
+
 ```
 compilation terminated. exit status 1 Compilation error: WiFi.h: No such file or directory
 ```
@@ -275,3 +277,7 @@ And was greeted with another red text of death, this one was actually not very b
 ![Error message](https://github.com/JeffTC72/Iot-manual/blob/main/resources/img/wififix3.jpg)
 
 I did the suggested fix and succesfully pulled my MAC address.
+
+### ESP error
+
+![Error message](https://github.com/JeffTC72/Iot-manual/blob/main/resources/img/esperror.jpg)
