@@ -26,5 +26,5 @@ http://arduino.esp8266.com/stable/package_esp8266com_index.json
 ![Preferences example](https://github.com/JeffTC72/Iot-manual/blob/main/resources/img/setup1.jpg)
 
 Then, right of the upload button, go to Select Board > and click the option with the port you're using, there search for 'NodeMCU 1.0' and click OK.
-If this doesn't show try to restart the Adruino software
-
+If this doesn't show try to restart the Adruino software.
+![Preferences example](https://github.com/JeffTC72/Iot-manual/blob/main/resources/img/setup2.jpg)
