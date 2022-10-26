@@ -280,4 +280,22 @@ I did the suggested fix and succesfully pulled my MAC address.
 
 ### ESP error
 
+```
+compilation terminated. exit status 1 Compilation error: esp_now.h: No such file or directory
+```
+
 ![Error message](https://github.com/JeffTC72/Iot-manual/blob/main/resources/img/esperror.jpg)
+
+When this error showed up I immediately tried to find a .ZIP library for esp_now. I couldn't find this but noticed the libraries I tried to include were named differently in both of my sketches even tho they were supposed to be the same. One had 'WiFi.h' and the other had 'ESP8266WiFi.h', and one had 'esp_now.h' while the other had 'espnow.h'. I changed the to the libraries included in my sender code which was working and got this error:
+
+```
+Compilation error: 'class WiFiClass' has no member named 'mode'
+```
+
+![Error message](https://github.com/JeffTC72/Iot-manual/blob/main/resources/img/espfix1.jpg)
+
+This I had seen before so I followed the same steps as before, fixing some suggested changes. Then I got this:
+
+![Error message](https://github.com/JeffTC72/Iot-manual/blob/main/resources/img/espfix2.jpg)
+
+To me this is a sign that something bigger is wrong, so I checked the article I was using and noticed that it was meant for the ESP32. *facepalms* this also explains why it did work before without any problems. So I looked for the correct article and changed my code and suprise! It worked... There it is, the lamest error fix ever.
