@@ -71,4 +71,6 @@ This is an error message I unexpectedly encountered while reproducing my process
 
 First I tried to upload the code again, this failed. (obviously)
 
-Then I 
+I found a [video](https://www.programmingelectronics.com/no-such-file-error/) with a step-by-step guide to fix this and found that I, as a matter of fact, did not have the WiFi library. I checked for a library that I tought would have this WiFi library and installed this, this was the Adafruit IO Adruino library, this failed. Then I looked online for a .ZIP of this WiFi library and found it [here](https://www.arduino.cc/reference/en/libraries/wifi/). Going to Sketch > Include Library > Add .ZIP Library.. I added it.
+
+![Error message](https://github.com/JeffTC72/Iot-manual/blob/main/resources/img/wififix1.jpg)
