@@ -30,4 +30,4 @@ If this doesn't show try to restart the Adruino software.
 
 ![Preferences example](https://github.com/JeffTC72/Iot-manual/blob/main/resources/img/setup2.jpg)
 
-
+N
