@@ -18,7 +18,7 @@ This manual also functions as a proof of concept for my IoT project. A pair of s
 ![Sketch of concept](https://github.com/JeffTC72/Iot-manual/blob/main/resources/img/concept_sketch.jpg)
 
 ## Setup
-Obviously we start by opening the Adruino IDE software and plugging in 1 of the boards. Go to File > Preferences, where it says 'Additional boards manager URL's' paste this url:
+The 2 board we will be using in this manual will be refered to as the 'sender' which will send the data, and the 'reciever' which will -you guessed it- recieve the data.Obviously we start by opening the Adruino IDE software and plugging in 1 of the boards, this board will be your reciever. Go to File > Preferences, where it says 'Additional boards manager URL's' paste this url:
 ```
 http://arduino.esp8266.com/stable/package_esp8266com_index.json
 ```
@@ -33,3 +33,7 @@ If this doesn't show try to restart the Adruino software.
 Now go to Tools > Board > Boards Manager... and search for 'ESP8266', click install
 
 ![Board example](https://github.com/JeffTC72/Iot-manual/blob/main/resources/img/setup3.jpg)
+
+### Getting your boards MAC address
+
+For your 
