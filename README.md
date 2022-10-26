@@ -22,3 +22,4 @@ Obviously we start by opening the Adruino IDE software and plugging in 1 of the 
 ```
 http://arduino.esp8266.com/stable/package_esp8266com_index.json
 ```
+![Preferences example](https://github.com/JeffTC72/Iot-manual/blob/main/resources/img/setup1.jpg)
