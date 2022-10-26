@@ -5,7 +5,7 @@
 > ESP-NOW is yet another protocol developed by Espressif, which enables multiple devices to communicate with one another without using Wi-Fi. The protocol is similar to the low-power 2.4GHz wireless connectivity that is often deployed in wireless mouses. So, the pairing between devices is needed prior to their communication. After the pairing is done, the connection is secure and peer-to-peer, with no handshake being required.
 > ~ [espressif](https://www.espressif.com/en/products/software/esp-now/overview/)
 
-> ESP-NOW is a connectionless communication protocol developed by Espressif that features short packet transmission. This protocol enables multiple devices to talk to each other in an easy way.
+> ESP-NOW is a connectionless communication protocol developed by Espressif that features short packet transmission and can be used with ESP8266 and ESP32 boards.
 > ~ [randomnerdtutorial](https://randomnerdtutorials.com/esp-now-esp32-arduino-ide/)
 
 ## Requirements
@@ -39,11 +39,14 @@ Now go to Tools > Board > Boards Manager... and search for 'ESP8266', click inst
 For your sender to know where to send it's data it will need to know the reciever MAC address, this is hardcoded in the board, you cannot give it one yourself. To do this upload the following code, then go to Tools > Serial Monitor.
 
 ```
+// Complete Instructions to Get and Change ESP MAC Address: https://RandomNerdTutorials.com/get-change-esp32-esp8266-mac-address-arduino/
+
 #include <ESP8266WiFi.h>
- 
+
 void setup(){
   Serial.begin(115200);
-  WiFi.mode(WIFI_AP_STA);
+  Serial.println();
+  Serial.print("ESP8266 Board MAC Address:  ");
   Serial.println(WiFi.macAddress());
 }
  
@@ -78,7 +81,7 @@ To the sender board upload the following code:
 #include <espnow.h>
 
 // REPLACE WITH RECEIVER MAC Address
-uint8_t broadcastAddress[] = {0x2C, 0x3A, 0xE8, 0x01, 0x22, 0xD6};
+uint8_t broadcastAddress[] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
 
 // Structure example to send data
 // Must match the receiver structure
@@ -146,7 +149,89 @@ void loop() {
 }
 ```
 
+At line 16 change the MAC address placeholder with the MAC address of your reciever board.
 
+To the reciever board upload the following code:
+
+```
+/*
+  Rui Santos
+  Complete project details at https://RandomNerdTutorials.com/esp-now-esp8266-nodemcu-arduino-ide/
+  
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files.
+  
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+*/
+
+#include <ESP8266WiFi.h>
+#include <espnow.h>
+
+// Structure example to receive data
+// Must match the sender structure
+typedef struct struct_message {
+    char a[32];
+    int b;
+    float c;
+    String d;
+    bool e;
+} struct_message;
+
+// Create a struct_message called myData
+struct_message myData;
+
+// Callback function that will be executed when data is received
+void OnDataRecv(uint8_t * mac, uint8_t *incomingData, uint8_t len) {
+  memcpy(&myData, incomingData, sizeof(myData));
+  Serial.print("Bytes received: ");
+  Serial.println(len);
+  Serial.print("Char: ");
+  Serial.println(myData.a);
+  Serial.print("Int: ");
+  Serial.println(myData.b);
+  Serial.print("Float: ");
+  Serial.println(myData.c);
+  Serial.print("String: ");
+  Serial.println(myData.d);
+  Serial.print("Bool: ");
+  Serial.println(myData.e);
+  Serial.println();
+}
+ 
+void setup() {
+  // Initialize Serial Monitor
+  Serial.begin(115200);
+  
+  // Set device as a Wi-Fi Station
+  WiFi.mode(WIFI_STA);
+
+  // Init ESP-NOW
+  if (esp_now_init() != 0) {
+    Serial.println("Error initializing ESP-NOW");
+    return;
+  }
+  
+  // Once ESPNow is successfully Init, we will register for recv CB to
+  // get recv packer info
+  esp_now_set_self_role(ESP_NOW_ROLE_SLAVE);
+  esp_now_register_recv_cb(OnDataRecv);
+}
+
+void loop() {
+  
+}
+```
+
+Now upload and open both serial monitors.
+
+The sender board should show this:
+
+![End example](https://github.com/JeffTC72/Iot-manual/blob/main/resources/img/end1.jpg)
+
+And the reviecer board should show this:
+
+![End example](https://github.com/JeffTC72/Iot-manual/blob/main/resources/img/end2.jpg)
 
 ## Encountered ERRORS
 
